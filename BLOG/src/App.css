@@ -32,7 +32,34 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.black-nav {
+  display: flex;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  font-size: 2rem;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.list {
+  padding-left: 20px;
+  text-align: left;
+  border-bottom: 1px solid grey;
+}
+
+.modal {
+  margin-top: 20px;
+  padding: 20px;
+  background: yellowgreen;
+  text-align: left;
 }
