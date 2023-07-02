@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import {Nav} from 'react-bootstrap'
 import { useEffect, useState } from "react";
+import { addItem } from "../store";
+import { useDispatch } from "react-redux";
 
 function Detail(props) {
 
@@ -9,6 +11,15 @@ function Detail(props) {
     let 찾은상품 = props.shoes.find(x => x.id == id);
     let [alert, setAlert] = useState(true);
     let [탭, 탭변경] = useState(2);
+    let dispatch = useDispatch()
+
+    useEffect(() => {
+        let 꺼낸거 = localStorage.getItem('watched')
+        꺼낸거 = JSON.parse(꺼낸거)
+        꺼낸거.push(찾은상품.id)
+        localStorage.setItem('watched', JSON.stringify(꺼낸거))
+    }, [])
+
 
     useEffect(() => {
         let a = setTimeout(() => { }, 2000)
@@ -24,10 +35,12 @@ function Detail(props) {
                    <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
                 </div>
               <div className="col-md-6">
-                <h4 className="pt-5">{props.shoes[id].title}</h4>
-                <p>{props.shoes[id].content}</p>
-                <p>{props.shoes[id].price}</p>
-                <button className="btn btn-danger">주문하기</button> 
+              <h4 className="pt-5">{props.shoes[id].title}</h4>
+        <p>{props.shoes[0].content}</p>
+        <p>{props.shoes[0].price}원</p>
+                <button className="btn btn-danger" onClick={() => {
+                    dispatch(addItem({ id : 2, name : 'Grey Yordan', count : 1 }));
+                }}>주문하기</button> 
                </div>
            </div>
 
